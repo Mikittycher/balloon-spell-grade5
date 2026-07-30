@@ -10,6 +10,10 @@ const words = [
 let current = 0;
 let score = 0;
 let lives = 3;
+
+const correctSound = new Audio("pop.mp3.mp3");
+const wrongSound = new Audio("wrong.mp3.mp3");
+
 const meaningElement = document.getElementById("meaning");
 const scoreElement = document.getElementById("score");
 const livesElement = document.getElementById("lives");
