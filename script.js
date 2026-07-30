@@ -40,3 +40,19 @@ function speakWord() {
 }
 
 speakButton.addEventListener("click", speakWord);
+function checkAnswer() {
+  const userAnswer = answerInput.value.trim().toLowerCase();
+  const correctAnswer = words[current].word.toLowerCase();
+
+  if (userAnswer === correctAnswer) {
+    messageElement.textContent = "✅ Correct!";
+    score++;
+  } else {
+    messageElement.textContent = "❌ Wrong!";
+    lives--;
+  }
+
+  scoreElement.textContent = score;
+  livesElement.textContent = "❤️".repeat(lives);
+}
+answerButton.addEventListener("click", checkAnswer);
