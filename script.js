@@ -63,7 +63,7 @@ setTimeout(() => {
   }
 
   showQuestion();
-}, 1000);
+}, 3000);
   
 }
 answerButton.addEventListener("click", checkAnswer);
