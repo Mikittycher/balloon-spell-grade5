@@ -18,3 +18,25 @@ const speakButton = document.getElementById("speak-button");
 const answerInput = document.getElementById("answer-input");
 const answerButton = document.getElementById("answer-button");
 const messageElement = document.getElementById("message");
+function showQuestion() {
+  const currentWord = words[current];
+
+  meaningElement.textContent = currentWord.meaning;
+  scoreElement.textContent = score;
+  livesElement.textContent = "❤️".repeat(lives);
+
+  answerInput.value = "";
+  messageElement.textContent = "";
+  answerInput.focus();
+}
+function speakWord() {
+  const currentWord = words[current];
+
+  const utterance = new SpeechSynthesisUtterance(currentWord.word);
+  utterance.lang = "en-US";
+
+  speechSynthesis.cancel();
+  speechSynthesis.speak(utterance);
+}
+
+speakButton.addEventListener("click", speakWord);
