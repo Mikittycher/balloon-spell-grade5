@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Balloon Quest</title>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+  <main class="game-container">
+
+    <header class="status-bar">
+      <div id="score">Score：0</div>
+      <div id="lives">❤️❤️❤️</div>
+    </header>
+
+    <section class="question-box">
+      <p>この英単語の意味を選ぼう</p>
+
+      <h1 id="english-word">house</h1>
+
+      <button id="sound-button">🔊 発音</button>
+    </section>
+
+    <section id="choices" class="choices">
+
+      <button class="balloon">今日</button>
+      <button class="balloon">お父さん</button>
+      <button class="balloon">家</button>
+      <button class="balloon">医者</button>
+
+    </section>
+
+    <p id="result"></p>
+
+  </main>
+
+  <script src="script.js"></script>
+
+</body>
+</html>
