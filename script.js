@@ -55,13 +55,15 @@ function checkAnswer() {
   scoreElement.textContent = score;
   livesElement.textContent = "❤️".repeat(lives);
 
-current++;
+setTimeout(() => {
+  current++;
 
-if (current >= words.length) {
-  current = 0;
-}
+  if (current >= words.length) {
+    current = 0;
+  }
 
-showQuestion();
+  showQuestion();
+}, 1000);
   
 }
 answerButton.addEventListener("click", checkAnswer);
