@@ -50,9 +50,11 @@ function checkAnswer() {
 
   if (userAnswer === correctAnswer) {
     messageElement.textContent = "✅ Correct!";
+    correctSound.play();
     score++;
   } else {
     messageElement.textContent = "❌ Wrong!";
+    wrongSound.play();
     lives--;
   }
 
