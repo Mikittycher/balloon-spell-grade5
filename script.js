@@ -10,3 +10,11 @@ const words = [
 let current = 0;
 let score = 0;
 let lives = 3;
+const meaningElement = document.getElementById("meaning");
+const scoreElement = document.getElementById("score");
+const livesElement = document.getElementById("lives");
+
+const speakButton = document.getElementById("speak-button");
+const answerInput = document.getElementById("answer-input");
+const answerButton = document.getElementById("answer-button");
+const messageElement = document.getElementById("message");
