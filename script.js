@@ -110,6 +110,7 @@ let isWaiting = false;
 
 const correctSound = new Audio("pop.mp3.mp3");
 const wrongSound = new Audio("wrong.mp3.mp3");
+const clearSound = new Audio("clear.mp3.mp3");
 
 const meaningElement = document.getElementById("meaning");
 const scoreElement = document.getElementById("score");
@@ -187,6 +188,7 @@ function checkAnswer() {
 
   
 if (score >= 10) {
+  clearSound.play();
   messageElement.textContent = "🎉 CLEAR!";
   answerInput.disabled = true;
   answerButton.disabled = true;
