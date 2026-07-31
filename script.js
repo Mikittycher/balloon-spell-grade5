@@ -1,10 +1,25 @@
 
 const words = [
   { word: "apple", meaning: "りんご" },
+  { word: "bag", meaning: "かばん" },
+  { word: "bird", meaning: "鳥" },
   { word: "book", meaning: "本" },
+  { word: "boy", meaning: "男の子" },
+  { word: "car", meaning: "車" },
   { word: "cat", meaning: "ねこ" },
+  { word: "chair", meaning: "いす" },
+  { word: "class", meaning: "授業" },
+  { word: "computer", meaning: "コンピューター" },
+  { word: "desk", meaning: "机" },
   { word: "dog", meaning: "犬" },
-  { word: "egg", meaning: "卵" }
+  { word: "egg", meaning: "卵" },
+  { word: "family", meaning: "家族" },
+  { word: "father", meaning: "父" },
+  { word: "friend", meaning: "友達" },
+  { word: "girl", meaning: "女の子" },
+  { word: "house", meaning: "家" },
+  { word: "man", meaning: "男性" },
+  { word: "mother", meaning: "母" }
 ];
 
 let current = 0;
