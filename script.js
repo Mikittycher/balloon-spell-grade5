@@ -10,6 +10,7 @@ const words = [
 let current = 0;
 let score = 0;
 let lives = 3;
+let isWaiting = false;
 
 const correctSound = new Audio("pop.mp3.mp3");
 const wrongSound = new Audio("wrong.mp3.mp3");
@@ -17,63 +18,103 @@ const wrongSound = new Audio("wrong.mp3.mp3");
 const meaningElement = document.getElementById("meaning");
 const scoreElement = document.getElementById("score");
 const livesElement = document.getElementById("lives");
-
 const speakButton = document.getElementById("speak-button");
 const answerInput = document.getElementById("answer-input");
 const answerButton = document.getElementById("answer-button");
 const messageElement = document.getElementById("message");
+
 function showQuestion() {
   const currentWord = words[current];
 
   meaningElement.textContent = currentWord.meaning;
   scoreElement.textContent = score;
-  livesElement.textContent = "❤️".repeat(lives);
+  livesElement.textContent = "❤️".repeat(Math.max(lives, 0));
 
   answerInput.value = "";
   messageElement.textContent = "";
+  answerInput.disabled = false;
+  answerButton.disabled = false;
+  isWaiting = false;
+
   answerInput.focus();
 }
+
 function speakWord() {
   const currentWord = words[current];
 
+  speechSynthesis.cancel();
+
   const utterance = new SpeechSynthesisUtterance(currentWord.word);
   utterance.lang = "en-US";
+  utterance.rate = 0.85;
 
-  speechSynthesis.cancel();
   speechSynthesis.speak(utterance);
 }
 
-speakButton.addEventListener("click", speakWord);
+function playSound(sound) {
+  sound.currentTime = 0;
+  sound.play().catch(function (error) {
+    console.log("音声を再生できませんでした。", error);
+  });
+}
+
 function checkAnswer() {
+  if (isWaiting) {
+    return;
+  }
+
   const userAnswer = answerInput.value.trim().toLowerCase();
   const correctAnswer = words[current].word.toLowerCase();
 
+  if (userAnswer === "") {
+    messageElement.textContent = "英単語を入力してください";
+    return;
+  }
+
+  isWaiting = true;
+  answerInput.disabled = true;
+  answerButton.disabled = true;
+
   if (userAnswer === correctAnswer) {
     messageElement.textContent = "✅ Correct!";
-    correctSound.play();
     score++;
+    playSound(correctSound);
   } else {
-    messageElement.textContent = "❌ Wrong!";
-    wrongSound.play();
+    messageElement.textContent =
+      "❌ Wrong! 正解は " + words[current].word;
     lives--;
+    playSound(wrongSound);
   }
 
   scoreElement.textContent = score;
-  livesElement.textContent = "❤️".repeat(lives);
+  livesElement.textContent = "❤️".repeat(Math.max(lives, 0));
 
-setTimeout(() => {
-  current++;
+  setTimeout(function () {
+    current++;
 
-  if (current >= words.length) {
-    current = 0;
-  }
+    if (current >= words.length) {
+      current = 0;
+    }
 
-  showQuestion();
-  
-}, 1000);
+    showQuestion();
+  }, 1000);
+}
+
+speakButton.addEventListener("click", function (event) {
+  event.preventDefault();
+  speakWord();
+});
+
 answerButton.addEventListener("click", function (event) {
   event.preventDefault();
   checkAnswer();
 });
-  
+
+answerInput.addEventListener("keydown", function (event) {
+  if (event.key === "Enter") {
+    event.preventDefault();
+    checkAnswer();
+  }
+});
+
 showQuestion();
