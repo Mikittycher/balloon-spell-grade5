@@ -185,6 +185,14 @@ function checkAnswer() {
   scoreElement.textContent = score;
   livesElement.textContent = "❤️".repeat(Math.max(lives, 0));
 
+  
+if (score >= 10) {
+  messageElement.textContent = "🎉 CLEAR!";
+  answerInput.disabled = true;
+  answerButton.disabled = true;
+  speakButton.disabled = true;
+  return;
+}
   setTimeout(function () {
     current++;
 
